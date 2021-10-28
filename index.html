@@ -11,6 +11,8 @@
     <link rel="icon" type="image/svg" sizes="16x16" href="assets/LOGO.svg" />
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/tailwind.css" />
+  <link rel="stylesheet" href="./assets/loading.css" />
+
 
     <script>
         $(document).ready(function () {
@@ -49,6 +51,12 @@
 
 
     function submitResetForms(){
+        $('html, body').css({
+            overflow: 'hidden',
+            height: '100%'
+          });
+
+          $(".loading").parent().removeClass('hidden')
         var password = $("#password").val();
         var confirmPassword = $("#confirmPassword").val();
 
@@ -68,6 +76,19 @@
                     window.location = '/home';
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
+
+                    $('html, body').css({
+                overflow: 'auto',
+                height: 'auto'
+              });
+              $(".loading").parent().addClass('hidden')
+
+              $('html, body').css({
+                overflow: 'auto',
+                height: 'auto'
+              });
+              $(".loading").parent().addClass('hidden')
+
                     alert('Erro ao alterar senha');
                     window.location = '/home';
     
@@ -75,6 +96,11 @@
                 },
             })
         }else{
+            $('html, body').css({
+                overflow: 'auto',
+                height: 'auto'
+              });
+              $(".loading").parent().addClass('hidden')
             $("#errorPassword").removeClass('hidden');
         }
     }
@@ -96,6 +122,13 @@
         
     </div>
 </header>
+
+<div class="hidden absolute bg-gray-900 bg-opacity-50 z-30 w-full h-full flex justify-center items-center">
+    <div class="loading dot-pulse">
+
+    </div>
+  </div>
+
 <div id="resetDiv" class="hidden px-10 sm:px-0 sm:items-center flex flex-col w-full ">
     <form action="/" method="post" id="resetForms" class="flex flex-col sm:border-solid sm:border-4 sm:px-20 sm:py-10 sm:border-green_light">
     <h1 class="mb-6 text-center text-xl text-green_dark">Recuperar senha</h1>
