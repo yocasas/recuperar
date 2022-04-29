@@ -19,7 +19,7 @@
         $(document).ready(function () {
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('token');
-            window.location = `${location.protocol}//${window.location.hostname}/home/?token=${token}`
+            window.location = `${location.protocol}//${window.location.hostname}/usuario/recuperar/?token=${token}`
             verifyResetToken(token)
         })
     </script>
